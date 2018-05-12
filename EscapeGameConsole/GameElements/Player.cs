@@ -6,7 +6,8 @@
 
 		int _toxicPotionCount;
 
-		public Player(GameElement host, int initialLife = 10) 
+		public Player(GameElement host = null, 
+		              int initialLife = Constants.PlayerLife)
 			: base(initialLife)
 		{
 			_host = host;
@@ -14,6 +15,8 @@
 
 		public void Visit(GameElement gameElement)
 		{
+			_host = gameElement;
+
 			Visit((dynamic)gameElement);
 
 			if (Life > 0)
@@ -44,18 +47,23 @@
 
 		private void Visit(Monster monster)
 		{
+			//Player is greedy when it owns toxic potion.
 			if (_toxicPotionCount > 0)
 			{
 				_toxicPotionCount--;
+				Life += monster.Life;
+
 				return;
 			}
-            
-			//TODO: Call FightManager to resolve the dispute
+
+			FightManager.Combat(this, monster, Constants.MonsterMaxDamage, 
+			                    Constants.MonsterReward);         
 		}
 
 		private void Visit(BigMonster bigMonster)
 		{
-			//TODO: Call FightManager to resolve the dispute
+			FightManager.Combat(this, bigMonster, Constants.BigMonsterMaxDamage, 
+			                    Constants.BigMonsterReward);
 		}
 	}
 }

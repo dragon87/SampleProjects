@@ -9,4 +9,7 @@
     <Folder Include="GameElements\" />
     <Folder Include="GameElements\MapElements\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="GameElements\Exception.cs" />
+  </ItemGroup>
 </Project>

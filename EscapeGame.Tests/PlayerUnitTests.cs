@@ -17,8 +17,6 @@ namespace EscapeGame.Tests
 
 			//Then its life soars by 1
 			Assert.Equal(expectedLife, player.Life);
-        }
-
-
+        }      
     }
 }

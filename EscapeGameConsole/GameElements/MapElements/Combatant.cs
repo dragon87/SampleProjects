@@ -10,5 +10,10 @@
 		{
 			Life -= intensity;
 		}
+
+        public void Reward(int life)
+		{
+			Life += life;
+		}
 	}
 }

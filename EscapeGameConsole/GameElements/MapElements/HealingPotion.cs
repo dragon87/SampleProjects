@@ -2,7 +2,8 @@
 {
 	public class HealingPotion : GameElement
 	{
-		public HealingPotion(int initialLife = 10) : base(initialLife)
+		public HealingPotion(int initialLife = Constants.HealingPotionLife) 
+			: base(initialLife)
 		{
 		}
 	}

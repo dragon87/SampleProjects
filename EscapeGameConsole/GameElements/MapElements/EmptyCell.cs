@@ -2,7 +2,8 @@
 {
 	public class EmptyCell : GameElement
 	{
-		public EmptyCell(int initialLife = 1) : base(initialLife)
+		public EmptyCell(int initialLife = Constants.EmptyCellInitialLife) 
+			: base(initialLife)
 		{
 		}
 	}

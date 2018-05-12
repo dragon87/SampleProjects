@@ -33,7 +33,7 @@ namespace EscapeGame.Tests
             //Then is should present its name and its remaining life
 			Assert.Equal(expected, actual);
 		}
-
+        
         [Fact]
         public void PunchedCombatantHasLifeDroppedOff()
 		{
@@ -44,6 +44,21 @@ namespace EscapeGame.Tests
 
 			//When it takes a punch
 			combatant.TakePunch(punchIntensity);
+
+			//Then its life drops off
+			Assert.Equal(expectedRemainingLife, combatant.Life);
+		}
+
+		[Fact]
+		public void RewardedCombatantHasLifeIncreased()
+		{
+			//Given a combatant
+			Combatant combatant = new Player();
+			int expectedRemainingLife = 15;
+			int reward = 5;
+
+			//When it takes a punch
+			combatant.Reward(reward);
 
 			//Then its life drops off
 			Assert.Equal(expectedRemainingLife, combatant.Life);

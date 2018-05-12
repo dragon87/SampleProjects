@@ -2,7 +2,7 @@
 {
 	public class ToxicPotion : GameElement
 	{
-		public ToxicPotion(int initialLife = 1) : base(initialLife)
+		public ToxicPotion(int initialLife = Constants.ToxicPotionLife) : base(initialLife)
 		{
 		}
 	}

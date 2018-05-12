@@ -1,8 +1,8 @@
 ﻿namespace EscapeGameConsole.GameElements
 {
-	public class BigMonster : GameElement
+	public class BigMonster : Combatant
 	{
-		public BigMonster(int initialLife = 10) : base(initialLife)
+		public BigMonster(int initialLife = Constants.BigMonsterLife) : base(initialLife)
 		{
 		}
 	}
