@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="GameElements\" />
+    <Folder Include="GameElements\MapElements\" />
+  </ItemGroup>
 </Project>
