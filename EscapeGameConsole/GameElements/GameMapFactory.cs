@@ -11,7 +11,7 @@ namespace EscapeGameConsole.GameElements
 				case DifficultyLevel.Low:
 					{
 						Random random = new Random();
-                        
+
 						int monsterCount = 2;
 						int toxicPotionCount = 0;
 						int healingPotionCount = random.Next(0, 2);
@@ -20,53 +20,54 @@ namespace EscapeGameConsole.GameElements
 																		 monsterCount,
 																		 toxicPotionCount,
 																		 healingPotionCount);
-						Player player = new Player(gameElements[Constants.LowLevelMapSize - 1, 0]);                  
+						Player player = new Player(gameElements[Constants.LowLevelMapSize - 1, 0]);
 
-						return new GameMap(player, gameElements, 
-						                   Constants.LowLevelMapSize);
+						return new GameMap(player, gameElements,
+										   Constants.LowLevelMapSize);
 					}
 
 				case DifficultyLevel.Medium:
-                    {
+					{
 						Random random = new Random();
-                        
-                        int monsterCount = 5;
+
+						int monsterCount = 5;
 						int toxicPotionCount = random.Next(0, 2);
-                        int healingPotionCount = random.Next(0, 3);
+						int healingPotionCount = random.Next(0, 3);
 
 						GameElement[,] gameElements = CreateGameElements(Constants.MediumLevelMapSize,
-                                                                         monsterCount,
-                                                                         toxicPotionCount,
-                                                                         healingPotionCount);
+																		 monsterCount,
+																		 toxicPotionCount,
+																		 healingPotionCount);
 						Player player = new Player(gameElements[Constants.MediumLevelMapSize - 1, 0]);
 
-                        return new GameMap(player, gameElements,
-						                   Constants.MediumLevelMapSize);
-                    }
+						return new GameMap(player, gameElements,
+										   Constants.MediumLevelMapSize);
+					}
 
 				case DifficultyLevel.High:
-                    {
+					{
 						Random random = new Random();
 
-                        int monsterCount = 8;
-                        int toxicPotionCount = random.Next(0, 3);
-                        int healingPotionCount = random.Next(0, 5);
+						int monsterCount = 8;
+						int toxicPotionCount = random.Next(0, 3);
+						int healingPotionCount = random.Next(0, 5);
 
 						GameElement[,] gameElements = CreateGameElements(Constants.HighLevelMapSize,
-                                                                         monsterCount,
-                                                                         toxicPotionCount,
-                                                                         healingPotionCount);
+																		 monsterCount,
+																		 toxicPotionCount,
+																		 healingPotionCount);
 						Player player = new Player(gameElements[Constants.HighLevelMapSize - 1, 0]);
 
-                        return new GameMap(player, gameElements,
-						                   Constants.HighLevelMapSize);
-                    }
-			}
+						return new GameMap(player, gameElements,
+										   Constants.HighLevelMapSize);
+					}
 
-			throw new Exception("Invalid game map configuration.");
+				default:
+					throw new Exception("Invalid game map configuration.");
+			}
 		}
 
-		private static GameElement[,] CreateGameElements(int mapSize,
+		static GameElement[,] CreateGameElements(int mapSize,
 														 int monsterCount,
 														 int toxicPotionCount,
 														 int healingPotionCount)

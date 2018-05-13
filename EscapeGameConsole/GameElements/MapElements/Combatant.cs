@@ -2,7 +2,7 @@
 {
 	public abstract class Combatant : GameElement
 	{
-		public Combatant(int initialLife) : base(initialLife)
+		protected Combatant(int initialLife) : base(initialLife)
 		{
 		}
 

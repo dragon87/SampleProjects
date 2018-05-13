@@ -6,7 +6,7 @@ namespace EscapeGameConsole.GameElements
     {
 		public int Life { get; protected set; }
 
-        public GameElement(int initialLife)
+		protected GameElement(int initialLife)
         {
 			Life = initialLife;
         }
@@ -18,7 +18,7 @@ namespace EscapeGameConsole.GameElements
         
         public string Render()
 		{
-			return $"{this.GetType().Name} / {Life};";
+			return $"{this.GetType().Name} / {Life}; ";
 		}
     }
 }

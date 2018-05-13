@@ -5,7 +5,7 @@
 		North = 1, //Up
 		South = 2, //Down,
 		West = 3, //Left
-		Easr = 4, //Right
+		East = 4, //Right
 	}
 
     public enum DifficultyLevel

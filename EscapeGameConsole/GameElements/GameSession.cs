@@ -4,10 +4,9 @@ namespace EscapeGameConsole.GameElements
 {
 	public class GameSession
 	{
-		GameMap _gameMap;
-		string _username;
-
-		IScoringService _scoringService;
+		readonly GameMap _gameMap;
+		readonly string _username;
+		readonly IScoringService _scoringService;
 
 		public GameSession(string username, DifficultyLevel difficultyLevel)
 		{
@@ -28,12 +27,22 @@ namespace EscapeGameConsole.GameElements
 			{
 				_gameMap.Render();
 				_gameMap.MovePlayer((Direction)random.Next(1, 5));
+
+				//Re-evaluate map
+				gameConditions = _gameMap.GetGameConditions();
 			}
+
+			_gameMap.Render();
 
 			if (gameConditions.Item1 > 0)
 			{
 				_scoringService.Persist(_username, gameConditions.Item1);
 			}
+			else
+			{
+				Console.WriteLine("Game over!");
+			}
 		}
 	}
 }
+

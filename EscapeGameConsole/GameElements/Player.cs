@@ -2,7 +2,7 @@
 {
 	public class Player : Combatant
 	{
-		GameElement _host;
+		public GameElement Host { get; private set; }
 
 		int _toxicPotionCount;
 
@@ -10,14 +10,17 @@
 		              int initialLife = Constants.PlayerLife)
 			: base(initialLife)
 		{
-			_host = host;
+			Host = host;
 		}
 
 		public void Visit(GameElement gameElement)
 		{
-			_host = gameElement;
+			Host = gameElement;
 
-			Visit((dynamic)gameElement);
+			if (gameElement.Life > 0)
+			{
+				Visit((dynamic)gameElement);
+			}
 
 			if (Life > 0)
 			{
@@ -25,17 +28,17 @@
 			}
 		}
 
-		private void Visit(EmptyCell emptyCell)
+		void Visit(EmptyCell emptyCell)
 		{
 			Life += emptyCell.Life;
 		}
         
-		private void Visit(ToxicPotion toxicPotion)
+		void Visit(ToxicPotion toxicPotion)
         {
 			_toxicPotionCount += toxicPotion.Life;
         }
 
-		private void Visit(HealingPotion healingPotion)
+		void Visit(HealingPotion healingPotion)
 		{
 			if (Life > healingPotion.Life)
 			{
@@ -45,7 +48,7 @@
 			Life = healingPotion.Life;
 		}
 
-		private void Visit(Monster monster)
+		void Visit(Monster monster)
 		{
 			//Player is greedy when it owns toxic potion.
 			if (_toxicPotionCount > 0)
@@ -60,7 +63,7 @@
 			                    Constants.MonsterReward);         
 		}
 
-		private void Visit(BigMonster bigMonster)
+		void Visit(BigMonster bigMonster)
 		{
 			FightManager.Combat(this, bigMonster, Constants.BigMonsterMaxDamage, 
 			                    Constants.BigMonsterReward);
