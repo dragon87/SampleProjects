@@ -1,14 +1,17 @@
 ﻿using System;
+using EscapeGameConsole.Factories;
+using EscapeGameConsole.GameElements;
+using EscapeGameConsole.Services;
 
-namespace EscapeGameConsole.GameElements
+namespace EscapeGameConsole.GameManagers
 {
-	public class GameSession
+	public class GameSessionManager
 	{
 		readonly GameMap _gameMap;
 		readonly string _username;
 		readonly IScoringService _scoringService;
 
-		public GameSession(string username, DifficultyLevel difficultyLevel)
+		public GameSessionManager(string username, DifficultyLevel difficultyLevel)
 		{
 			_username = username;
 			_gameMap = GameMapFactory.GetGameMap(difficultyLevel);         

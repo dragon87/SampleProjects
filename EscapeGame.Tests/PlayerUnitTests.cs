@@ -1,4 +1,5 @@
 ﻿using EscapeGameConsole.GameElements;
+using EscapeGameConsole.MapElements;
 using Xunit;
 
 namespace EscapeGame.Tests

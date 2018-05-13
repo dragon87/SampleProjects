@@ -1,4 +1,6 @@
-﻿namespace EscapeGameConsole.GameElements
+﻿using EscapeGameConsole.GameElements;
+
+namespace EscapeGameConsole.MapElements
 {
 	public abstract class Combatant : GameElement
 	{

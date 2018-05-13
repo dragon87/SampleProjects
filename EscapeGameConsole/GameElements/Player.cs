@@ -1,4 +1,7 @@
-﻿namespace EscapeGameConsole.GameElements
+﻿using EscapeGameConsole.GameManagers;
+using EscapeGameConsole.MapElements;
+
+namespace EscapeGameConsole.GameElements
 {
 	public class Player : Combatant
 	{

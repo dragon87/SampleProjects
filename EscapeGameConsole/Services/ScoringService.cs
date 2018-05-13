@@ -1,6 +1,6 @@
 ﻿using static System.Console;
 
-namespace EscapeGameConsole.GameElements
+namespace EscapeGameConsole.Services
 {
 	public interface IScoringService
 	{

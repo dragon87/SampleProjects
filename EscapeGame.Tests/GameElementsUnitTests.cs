@@ -1,4 +1,5 @@
 using EscapeGameConsole.GameElements;
+using EscapeGameConsole.MapElements;
 using Xunit;
 
 namespace EscapeGame.Tests
@@ -25,7 +26,7 @@ namespace EscapeGame.Tests
 		{
 			//Given a game element
 			BigMonster bigMonster = new BigMonster();
-			string expected = "BigMonster / 10;";
+			string expected = "BigMonster / 10; ";
 
 			//When it is rendered
 			string actual = bigMonster.Render();

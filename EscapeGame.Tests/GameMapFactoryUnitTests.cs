@@ -1,4 +1,5 @@
 ﻿using System;
+using EscapeGameConsole.Factories;
 using EscapeGameConsole.GameElements;
 using Xunit;
 

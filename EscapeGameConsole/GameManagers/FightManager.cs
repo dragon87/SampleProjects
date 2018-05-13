@@ -1,6 +1,7 @@
 ﻿using System;
+using EscapeGameConsole.MapElements;
 
-namespace EscapeGameConsole.GameElements
+namespace EscapeGameConsole.GameManagers
 {
 	public static class FightManager
 	{

@@ -1,4 +1,5 @@
 ﻿using EscapeGameConsole.GameElements;
+using EscapeGameConsole.GameManagers;
 
 namespace EscapeGameConsole
 {
@@ -8,8 +9,8 @@ namespace EscapeGameConsole
 		static void Main(string[] args)
 #pragma warning restore RECS0154 // Parameter is never used
 		{
-			GameSession gameSession = new GameSession("Dragos",
-			                                          DifficultyLevel.High);
+			GameSessionManager gameSession = new GameSessionManager("Dragos",
+			                                                        DifficultyLevel.Medium);
 
 			gameSession.SimulateRound();
         }

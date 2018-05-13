@@ -1,6 +1,8 @@
 ﻿using System;
+using EscapeGameConsole.GameElements;
+using EscapeGameConsole.MapElements;
 
-namespace EscapeGameConsole.GameElements
+namespace EscapeGameConsole.Factories
 {
 	public static class GameMapFactory
 	{

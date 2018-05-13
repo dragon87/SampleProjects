@@ -1,4 +1,6 @@
 ﻿using System;
+using EscapeGameConsole.Factories;
+using EscapeGameConsole.MapElements;
 
 namespace EscapeGameConsole.GameElements
 {
@@ -21,66 +23,17 @@ namespace EscapeGameConsole.GameElements
 			Tuple<int, int> currentPlayerLocation = 
 				this.GetElementLocation(_player.Host);
 
-			switch (direction)
+			MoveResult moveResult = DirectionFactory.GetNextLocation(currentPlayerLocation,
+																	direction, _mapSize);
+
+			if (moveResult.IsValid)
 			{
-				case Direction.North:
-					{
-						if (currentPlayerLocation.Item1 == 0)
-						{
-							Console.WriteLine($"Invalid move: {direction}");
-							return;
-						}
-
-						_player.Visit(_gameElements[currentPlayerLocation.Item1 - 1,
-													currentPlayerLocation.Item2]);
-
-						break;
-					}
-
-				case Direction.South:
-					{
-						if (currentPlayerLocation.Item1 == _mapSize - 1)
-						{
-							Console.WriteLine($"Invalid move: {direction}");
-							return;
-						}
-
-						_player.Visit(_gameElements[currentPlayerLocation.Item1 + 1,
-													currentPlayerLocation.Item2]);
-
-						break;
-					}
-
-				case Direction.West:
-					{
-						if (currentPlayerLocation.Item2 == 0)
-						{
-							Console.WriteLine($"Invalid move: {direction}");
-							return;
-						}
-
-						_player.Visit(_gameElements[currentPlayerLocation.Item1,
-													currentPlayerLocation.Item2 - 1]);
-
-						break;
-					}
-
-				case Direction.East:
-					{
-						if (currentPlayerLocation.Item2 == _mapSize - 1)
-						{
-							Console.WriteLine($"Invalid move: {direction}");
-							return;
-						}
-
-						_player.Visit(_gameElements[currentPlayerLocation.Item1,
-													currentPlayerLocation.Item2 + 1]);
-
-						break;
-					}
-
-				default:
-					throw new Exception("Diagonal move not supported.");
+				_player.Visit(_gameElements[moveResult.FutureLocation.Item1,
+											moveResult.FutureLocation.Item2]);
+			}
+			else
+			{
+				Console.WriteLine($"Invalid move: {direction}");
 			}
 		}
 
