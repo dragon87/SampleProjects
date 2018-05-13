@@ -34,7 +34,7 @@
 		public const int BigMonsterReward = 10;
 
 		public const int LowLevelMapSize = 3;
-		public const int MediumLevelMapSize = 5;
-		public const int HighLevelMapSize = 10;
+		public const int MediumLevelMapSize = 4;
+		public const int HighLevelMapSize = 5;
 	}
 }

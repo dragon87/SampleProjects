@@ -39,9 +39,27 @@ namespace EscapeGameConsole.GameElements
 			Console.WriteLine();
 		}
 
+        /// <summary>
+        /// Gets the game conditions.
+        /// </summary>
+		/// <returns>The game conditions: player life score plus number of
+		/// living monsters.</returns>
 		public Tuple<int, int> GetGameConditions()
 		{
-			return new Tuple<int, int>(1, 1);
+			int livingMonsterCount = 0;
+
+			for (int i = 0; i < _mapSize; i++)
+			{
+				for (int j = 0; j < _mapSize; j++)
+				{
+					if (_gameElements[i, j] is Monster)
+					{
+						livingMonsterCount++;
+					}
+				}
+			}
+
+			return new Tuple<int, int>(_player.Life, livingMonsterCount);
 		}
 	}
 }
