@@ -31,26 +31,16 @@
     </table>
     <script>var app = new function() {
             this.el = document.getElementById('gameScores');
-            this.gameScores = [
-                { Username: 'Player 1', Score: 100, Date: '11/05/2018' },
-                { Username: 'Player 2', Score: 200, Date: '12/05/2018' },
-                { Username: 'Player 3', Score: 300, Date: '13/05/2018' },
-                { Username: 'Player 4', Score: 400, Date: '14/05/2018' },
-                { Username: 'Player 5', Score: 500, Date: '15/05/2018' },
-                { Username: 'Player 6', Score: 600, Date: '16/05/2018' },
-                { Username: 'Player 7', Score: 700, Date: '17/05/2018' },
-                { Username: 'Player 8', Score: 800, Date: '18/05/2018' },
-                { Username: 'Player 9', Score: 900, Date: '19/05/2018' },
-            ];
+            this.gameScores = null;
 
-            this.FetchAll = function() {
+            this.RenderGamesScoreData = function() {
                 var data = '';
                 if (this.gameScores.length > 0) {
                     for (i = 0; i < this.gameScores.length; i++) {
                         data += '<tr>';
-                        data += '<td>' + this.gameScores[i].Username + '</td>';
-                        data += '<td>' + this.gameScores[i].Score + '</td>';
-                        data += '<td>' + this.gameScores[i].Date + '</td>';
+                        data += '<td>' + this.gameScores[i].username + '</td>';
+                        data += '<td>' + this.gameScores[i].score + '</td>';
+                        data += '<td>' + new Date(this.gameScores[i].date).toLocaleDateString("en-US") + '</td>';
                         data += '<td><button onclick="app.Edit(' + i + ')">Edit</button></td>';
                         data += '<td><button onclick="app.Delete(' + i + ')">Delete</button></td>';
                         data += '</tr>';
@@ -61,14 +51,14 @@
 
             this.Edit = function(item) {
                 var el = document.getElementById('edit-name');
-                el.value = this.gameScores[item].Username;
+                el.value = this.gameScores[item].username;
 
                 document.getElementById('spoiler').style.display = 'block';
                 self = this;
 
                 document.getElementById('saveEdit').onsubmit = function() {
                     if (el.value) {
-                        self.gameScores[item].Username = el.value;
+                        self.gameScores[item].username = el.value;
                         self.FetchAll();
 
                         CloseInput();
@@ -80,9 +70,32 @@
                 this.gameScores.splice(item, 1);
                 this.FetchAll();
             };
+
+            this.GetGameScoresData = function() {
+                var ajax = new XMLHttpRequest();
+                ajax.onload = functionName;
+                ajax.onerror = errorFunctionName;
+                ajax.open("GET", "http://localhost:5000/api/games", true);
+                ajax.send();
+                self = this;
+                function functionName() {
+                    console.log(JSON.parse(this.response)); // log the response
+                    if (this.status == 200) { // request succeeded
+                        self.gameScores = JSON.parse(this.response);
+                        self.RenderGamesScoreData();
+                    } else {
+                        // handle more HTTP response codes here;
+                    }
+                }
+                function errorFunctionName(e) {
+                    console.log(this);
+                    console.error(e);
+                }
+            }
 }
 
-app.FetchAll();
+app.GetGameScoresData();
+
 function CloseInput() {
             document.getElementById('spoiler').style.display = 'none';
 }</script>
