@@ -69,7 +69,9 @@
 
             this.Delete = function(item) {
                 this.gameScores.splice(item, 1);
-                this.FetchAll();
+
+                //TODO: call delete api method
+                this.RenderGamesScoreData();
             };
 
             this.GetGameScoresData = function() {
