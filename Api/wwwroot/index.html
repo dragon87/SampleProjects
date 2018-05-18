@@ -59,7 +59,8 @@
                 document.getElementById('saveEdit').onsubmit = function() {
                     if (el.value) {
                         self.gameScores[item].username = el.value;
-                        self.FetchAll();
+                        //self.GetGameScoresData();
+                        self.RenderGamesScoreData();
 
                         CloseInput();
                     }
